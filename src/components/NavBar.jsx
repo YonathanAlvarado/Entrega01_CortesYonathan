@@ -1,31 +1,33 @@
 import React from "react";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import CartWidget from "./CartWidget"
+import { Link } from "react-router-dom";
+import CartWidget from "./CartWidget";
 
 const NavBar = () => {
-
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
-            <a className="navbar-brand" href="/">NombreTienda</a>
+            <Link className="navbar-brand" to="/">NombreTienda</Link>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
             </button>
             <div className="collapse navbar-collapse" id="navbarNav">
                 <ul className="navbar-nav">
                     <li className="nav-item">
-                        <a className="nav-link" href="/">Inicio</a>
+                        <Link className="nav-link" to="/">Inicio</Link>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link" href="/categorias">Categorías</a>
+                        <Link className="nav-link" to="/category/vehiculos">Vehículos</Link>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link" href="/contacto">Contacto</a>
+                        <Link className="nav-link" to="/category/electronica">Electrónica</Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link className="nav-link" to="/category/ropa">Ropa</Link>
                     </li>
                 </ul>
             </div>
-            <CartWidget /> { }
+            <CartWidget />
         </nav>
     );
-}
+};
 
 export default NavBar;

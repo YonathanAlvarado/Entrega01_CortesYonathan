@@ -1,17 +1,24 @@
-import React from "react";
-import Item from "./Item";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import ItemList from "./ItemList";
+import { getProducts } from "../mocks/async-mocks";
 
-const ItemListContainer = ({ greeting, products }) => {
+const ItemListContainer = () => {
+    const { id } = useParams();
+    const [items, setItems] = useState([]);
+
+    useEffect(() => {
+        getProducts(id).then((data) => {
+            setItems(data);
+        });
+    }, [id]);
+
     return (
-        <div className="item-list-container">
-            <h2>{greeting}</h2>
-            <div className="item-list">
-                {products.map(product => (
-                    <Item key={product.id} product={product} />
-                ))}
-            </div>
+        <div>
+            <h2>{id ? `Categoría: ${id}` : "Catálogo de Productos"}</h2>
+            <ItemList items={items} />
         </div>
     );
-}
+};
 
 export default ItemListContainer;
